@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------
+# Project Name : Password Generator
+# Organization : CODSOFT
+# Language     : Python
+# ---------------------------------------------------------------
+
+import random
+import string
+
+def generate_password(length, complexity_level):
+    """
+    Function to generate a random password based on user's chosen complexity.
+    """
+
+    if complexity_level == 1:
+        characters = string.ascii_letters  # Only letters
+    elif complexity_level == 2:
+        characters = string.ascii_letters + string.digits  # Letters + Numbers
+    elif complexity_level == 3:
+        characters = string.ascii_letters + string.digits + string.punctuation  # Strong
+    else:
+        print("Invalid choice! Defaulting to strong password.")
+        characters = string.ascii_letters + string.digits + string.punctuation
+
+    # Generate password
+    password = ''.join(random.choice(characters) for _ in range(length))
+    return password
+
+
+# ---------------------------------------------------------------
+# Main Program
+# ---------------------------------------------------------------
+print("🔐 Welcome to the CODSOFT Password Generator 🔐")
+
+# Ask user for password length
+length = int(input("Enter desired password length: "))
+
+# Ask user for complexity level
+print("\nChoose Password Complexity:")
+print("1. Easy   - Only letters")
+print("2. Medium - Letters + Numbers")
+print("3. Strong - Letters + Numbers + Symbols")
+
+complexity = int(input("Enter your choice (1/2/3): "))
+
+# Generate and display password
+generated_password = generate_password(length, complexity)
+
+print("\n✅ Your generated password is:", generated_password)
+print("Thank you for using CODSOFT Password Generator!")
